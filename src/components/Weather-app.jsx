@@ -162,18 +162,22 @@ function Weatherapp() {
     const cursorElement = document.querySelector(".cursor");
 
     if(!cursorElement) return;
-
+    if(window.innerWidth < 1020){
+      cursorElement.style.backgroundImage = "none";
+      return;
+    }
     if(weather && cursors[weather]){
       cursorElement.style.backgroundImage = `url(${cursors[weather]})`;
     }
     else{
-      document.querySelector(".cursor").style.backgroundImage = "none"
+      cursorElement.style.backgroundImage = "none";
+      cursorElement.style.cursor = "auto";
     }
   }
 
   return (
     <>
-      <div className="container h-screen w-screen bg-[#E8E8E8] flex items-center justify-center max-sm:p-5">
+      <div className="container h-screen bg-[#E8E8E8] flex items-center justify-center max-sm:p-5">
         <div
           className="cursor fixed top-0 left-0 h-10 w-10 rounded-[50%] z-50"
           style={{
@@ -183,7 +187,7 @@ function Weatherapp() {
         ></div>
         <div
           className="theme absolute xl:right-10 xl:top-5 
-        max-sm:top-4 max-sm:right-3
+        max-sm:top-12 max-sm:right-3
         md:top-[5px] md:right-[5px] text-[12px]"
         >
           <span className="font-semibold ml-2.5">Theme</span>
@@ -274,35 +278,34 @@ function Weatherapp() {
               flex justify-center"
               >
                 <div className="data w-full flex flex-col z-10">
-                  <span className="text-5xl font-medium">{dayName}</span>
-                  <span className="text-3xl font-medium capitalize mx-2">
+                  <span className="text-5xl font-medium max-sm:text-4xl">{dayName}</span>
+                  <span className="text-3xl font-medium capitalize mx-2 max-sm:mx-1">
                     {weatherNames.locationName}
                     <span className="text-[20px] ml-5">{date}</span>
                   </span>
                   <span
                     className="text-9xl py-2 flex 
-                  max-sm:text-7xl
+                  max-sm:text-6xl
                   max-md:text-8xl"
                   >
                     {weatherNames.temperature}
-                    <h1 className="text-[4.5rem] align-super max-sm:text-5xl">
+                    <h1 className="text-[4.5rem] align-super max-sm:text-4xl">
                       °C
                     </h1>
                     <img
                       className="h-20 mt-10 -mx-5 max-md:px-0
-                      max-sm:-ml-5
+                      max-sm:-ml-2 max-sm:h-15
                       max-md:mt-5"
                       src={thermometer}
                       alt=""
                     />
                   </span>
                   <img
-                    className="weather__image w-75 obj absolute -right-5 top-22
-                    max-sm:h-45 max-sm:top-25
+                    className="weather__image w-75 object-cover absolute -right-5 top-22
+                    max-sm:w-50 max-sm:top-30
                     max-md:top-13"
                     src={Images[imgKey]}
                   />
-                  {weatherNames.climateName}
                 </div>
 
                 <div

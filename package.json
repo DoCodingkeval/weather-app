@@ -1,10 +1,12 @@
 {
+  "homepage": "https://docodingkeval.github.io/weather-app",
   "name": "weather_app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://docodingkeval.github.io/weather-app",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -15,6 +17,7 @@
     "@tailwindcss/vite": "^4.1.7",
     "axios": "^1.9.0",
     "dayjs": "^1.11.13",
+    "gh-pages": "^6.3.0",
     "gsap": "^3.13.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

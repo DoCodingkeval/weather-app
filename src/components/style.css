@@ -3,6 +3,7 @@
 
 .container {
   font-family: "Montserrat", serif;
+  cursor: none;
 }
 .title{
   -webkit-text-stroke: 2px black;

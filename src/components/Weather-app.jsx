@@ -1,34 +1,60 @@
 import { useEffect, useState, useRef, use } from "react";
 import axios from "axios";
-import snow from "../assets/images/snow.png";
-import clear from "../assets/images/clear.png";
-import sunny from "../assets/images/sunny.png";
-import rain from "../assets/images/rain.png";
-import cloud from "../assets/images/cloud.png";
+import snow from "../assets/images/snowy.svg";
+import heavysnow from "../assets/images/heavysnow.svg";
+import lightsnow from "../assets/images/lightsnow.svg";
+import clear from "../assets/images/clear.svg";
+import rain from "../assets/images/rainy.svg";
+import drizzle from "../assets/images/drizzle.svg";
+import cloud from "../assets/images/cloudy-day-3.svg";
+import cloudy from "../assets/images/cloudy.svg";
 import smoke from "../assets/images/smoke.png";
 import haze from "../assets/images/haze.png";
-import thunder from "../assets/images/thunder.png";
+import thunder from "../assets/images/thunder.svg";
 import thermometer from "../assets/images/thermometer.png";
 import humidity from "../assets/images/humidity.png";
 import wind from "../assets/images/wind.png";
+import suncur from "../assets/images/sun.png";
+import raincur from "../assets/images/rain-cur.png";
+import cloudcur from "../assets/images/cloud-cur.png";
+import mistcur from "../assets/images/mist-cur.png";
+import snowcur from "../assets/images/snow-cur.png";
+import fogcur from "../assets/images/fog-cur.png";
 import { MoonLoader } from "react-spinners";
 import dayjs from "dayjs";
 import { RiMapPinLine, RiSearchLine } from "@remixicon/react";
 import "./style.css";
 import Noresult from "./Noresult.jsx";
+import gsap from "gsap";
 
 const Images = {
   Clear: clear,
-  Sunny: sunny,
+  "clear sky": clear,
+  Sunny: clear,
   Snow: snow,
+  "heavy snow": heavysnow,
+  "light snow": lightsnow,
   Rain: rain,
   Thunderstorm: thunder,
+  "overcast clouds": cloud,
+  "broken clouds": cloudy,
+  "scattered clouds": cloudy,
+  "few clouds": cloudy,
   Clouds: cloud,
-  // Drizzle: drizzle,
+  Drizzle: drizzle,
   Smoke: smoke,
   Haze: haze,
   Mist: haze,
 };
+
+const cursors = {
+  Clouds: cloudcur,
+  Clear: suncur,
+  Rain: raincur,
+  Snow: snowcur,
+  Mist: mistcur,
+  Fog: fogcur
+}
 
 const API_URL = "https://api.openweathermap.org/data/2.5/weather";
 const APIF_URL = "https://api.openweathermap.org/data/2.5/forecast";
@@ -58,7 +84,6 @@ function Weatherapp() {
     console.log(dailyResponse.data);
     const dayForecast = dailyForecast(dailyResponse.data.list);
     setForecast(dayForecast);
-    console.log(dayForecast);
   };
 
   const dailyForecast = (data) => {
@@ -99,6 +124,7 @@ function Weatherapp() {
         setLoading(false);
       }, 2000);
       setData(response.data);
+      console.log(response.data);
       setHasNoResults(false);
     } catch (error) {
       setHasNoResults(true);
@@ -107,7 +133,7 @@ function Weatherapp() {
   };
 
   const weatherNames = {
-    climateName: data?.weather[0]?.main,
+    climateName: data?.weather[0]?.description,
     locationName: data?.name,
     humidityPercent: data?.main?.humidity,
     windSpeed: data?.wind?.speed,
@@ -118,9 +144,43 @@ function Weatherapp() {
   const date = dayjs().format("DD.MM.YY");
   const dayName = dayjs().format("dddd");
 
+  let body = document.querySelector("body");
+
+  body.addEventListener("mousemove", (e) => {
+    gsap.to(".cursor", {
+      x: e.clientX,
+      y: e.clientY,
+    });
+  });
+
+  useEffect(()=>{
+    customCursor();
+  },[data])
+
+  const customCursor = ()=>{
+    const weather = data?.weather[0]?.main;
+    const cursorElement = document.querySelector(".cursor");
+
+    if(!cursorElement) return;
+
+    if(weather && cursors[weather]){
+      cursorElement.style.backgroundImage = `url(${cursors[weather]})`;
+    }
+    else{
+      document.querySelector(".cursor").style.backgroundImage = "none"
+    }
+  }
+
   return (
     <>
       <div className="container h-screen w-screen bg-[#E8E8E8] flex items-center justify-center max-sm:p-5">
+        <div
+          className="cursor fixed top-0 left-0 h-10 w-10 rounded-[50%] z-50"
+          style={{
+            backgroundImage: `url(${cloudcur})`,
+            backgroundSize: "cover",
+          }}
+        ></div>
         <div
           className="theme absolute xl:right-10 xl:top-5 
         max-sm:top-4 max-sm:right-3
@@ -143,7 +203,7 @@ function Weatherapp() {
                 mainRef.current.style.color = "#000";
                 mainRef.current.style.boxShadow = "8px 8px 0px #323232";
                 forecastRef.current.style.background = "#d3d3d3";
-                forecastRef.current.style.color = "#aaa";
+                forecastRef.current.style.color = "#000";
               }
             }}
           />
@@ -229,7 +289,7 @@ function Weatherapp() {
                       °C
                     </h1>
                     <img
-                      className="h-20 mt-10 max-md:px-0
+                      className="h-20 mt-10 -mx-5 max-md:px-0
                       max-sm:-ml-5
                       max-md:mt-5"
                       src={thermometer}
@@ -237,18 +297,12 @@ function Weatherapp() {
                     />
                   </span>
                   <img
-                    className="weather__image h-65 absolute right-0
+                    className="weather__image w-75 obj absolute -right-5 top-22
                     max-sm:h-45 max-sm:top-25
                     max-md:top-13"
                     src={Images[imgKey]}
                   />
-                  <span
-                    className="text-right px-15 -mt-5 text-3xl font-medium
-                  max-sm:px-6 max-sm:text-2xl
-                  max-md:-mt-12"
-                  >
-                    {weatherNames.climateName}
-                  </span>
+                  {weatherNames.climateName}
                 </div>
 
                 <div

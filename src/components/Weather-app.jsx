@@ -53,8 +53,8 @@ const cursors = {
   Rain: raincur,
   Snow: snowcur,
   Mist: mistcur,
-  Fog: fogcur
-}
+  Fog: fogcur,
+};
 
 const API_URL = "https://api.openweathermap.org/data/2.5/weather";
 const APIF_URL = "https://api.openweathermap.org/data/2.5/forecast";
@@ -153,27 +153,26 @@ function Weatherapp() {
     });
   });
 
-  useEffect(()=>{
+  useEffect(() => {
     customCursor();
-  },[data])
+  }, [data]);
 
-  const customCursor = ()=>{
+  const customCursor = () => {
     const weather = data?.weather[0]?.main;
     const cursorElement = document.querySelector(".cursor");
 
-    if(!cursorElement) return;
-    if(window.innerWidth < 1020){
+    if (!cursorElement) return;
+    if (window.innerWidth < 1020) {
       cursorElement.style.backgroundImage = "none";
       return;
     }
-    if(weather && cursors[weather]){
+    if (weather && cursors[weather]) {
       cursorElement.style.backgroundImage = `url(${cursors[weather]})`;
-    }
-    else{
+    } else {
       cursorElement.style.backgroundImage = "none";
       cursorElement.style.cursor = "auto";
     }
-  }
+  };
 
   return (
     <>
@@ -190,7 +189,6 @@ function Weatherapp() {
         max-sm:top-2 max-sm:right-3
         md:top-[5px] md:right-[5px] text-[12px]"
         >
-          <span className="font-semibold ml-2.5">Theme</span>
           <input
             type="checkbox"
             id="check"
@@ -278,7 +276,9 @@ function Weatherapp() {
               flex justify-center"
               >
                 <div className="data w-full flex flex-col z-10">
-                  <span className="text-5xl font-medium max-sm:text-4xl">{dayName}</span>
+                  <span className="text-5xl font-medium max-sm:text-4xl">
+                    {dayName}
+                  </span>
                   <span className="text-3xl font-medium capitalize mx-2 max-sm:mx-1">
                     {weatherNames.locationName}
                     <span className="text-[20px] ml-5">{date}</span>

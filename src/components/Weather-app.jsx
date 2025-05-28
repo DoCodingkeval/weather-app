@@ -177,7 +177,7 @@ function Weatherapp() {
 
   return (
     <>
-      <div className="container h-full bg-[#E8E8E8] flex items-center justify-center max-sm:p-5">
+      <div className="container h-screen bg-[#E8E8E8] flex items-center justify-center max-sm:px-5">
         <div
           className="cursor fixed top-0 left-0 h-10 w-10 rounded-[50%] z-50"
           style={{
@@ -230,7 +230,7 @@ function Weatherapp() {
         </div>
         <h1
           className="title absolute top-0 capitalize text-nowrap xl:text-8xl
-        max-sm:text-5xl max-sm:top-10 max-sm:left-5
+        max-sm:text-5xl max-sm:top-15 max-sm:left-5
         md:text-[48px]"
         >
           weather app

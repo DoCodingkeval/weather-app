@@ -177,7 +177,7 @@ function Weatherapp() {
 
   return (
     <>
-      <div className="container h-screen bg-[#E8E8E8] flex items-center justify-center max-sm:p-5">
+      <div className="container h-full bg-[#E8E8E8] flex items-center justify-center max-sm:p-5">
         <div
           className="cursor fixed top-0 left-0 h-10 w-10 rounded-[50%] z-50"
           style={{
@@ -187,7 +187,7 @@ function Weatherapp() {
         ></div>
         <div
           className="theme absolute xl:right-10 xl:top-5 
-        max-sm:top-12 max-sm:right-3
+        max-sm:top-2 max-sm:right-3
         md:top-[5px] md:right-[5px] text-[12px]"
         >
           <span className="font-semibold ml-2.5">Theme</span>
@@ -230,7 +230,7 @@ function Weatherapp() {
         </div>
         <h1
           className="title absolute top-0 capitalize text-nowrap xl:text-8xl
-        max-sm:text-5xl max-sm:top-5 max-sm:left-5
+        max-sm:text-5xl max-sm:top-10 max-sm:left-5
         md:text-[48px]"
         >
           weather app
@@ -240,7 +240,7 @@ function Weatherapp() {
           w-140 h-140 max-sm:max-w-[400px] max-sm:h-[500px]
           max-md:max-w-full max-md:h-[510px]
           max-lg:max-w-[560px] max-lg:h-[550px]
-          mt-15 flex flex-col items-center justify-center  duration-700"
+          mt-15 flex flex-col items-center justify-center duration-700"
           ref={mainRef}
         >
           <div className="w-full absolute top-2 p-5 flex items-center gap-2.5 z-10">

@@ -14,18 +14,11 @@ import thunder from "../assets/images/thunder.svg";
 import thermometer from "../assets/images/thermometer.png";
 import humidity from "../assets/images/humidity.png";
 import wind from "../assets/images/wind.png";
-import suncur from "../assets/images/sun.png";
-import raincur from "../assets/images/rain-cur.png";
-import cloudcur from "../assets/images/cloud-cur.png";
-import mistcur from "../assets/images/mist-cur.png";
-import snowcur from "../assets/images/snow-cur.png";
-import fogcur from "../assets/images/fog-cur.png";
 import { MoonLoader } from "react-spinners";
 import dayjs from "dayjs";
 import { RiMapPinLine, RiSearchLine } from "@remixicon/react";
 import "./style.css";
 import Noresult from "./Noresult.jsx";
-import gsap from "gsap";
 
 const Images = {
   Clear: clear,
@@ -45,15 +38,6 @@ const Images = {
   Smoke: smoke,
   Haze: haze,
   Mist: haze,
-};
-
-const cursors = {
-  Clouds: cloudcur,
-  Clear: suncur,
-  Rain: raincur,
-  Snow: snowcur,
-  Mist: mistcur,
-  Fog: fogcur,
 };
 
 const API_URL = "https://api.openweathermap.org/data/2.5/weather";
@@ -144,46 +128,9 @@ function Weatherapp() {
   const date = dayjs().format("DD.MM.YY");
   const dayName = dayjs().format("dddd");
 
-  let body = document.querySelector("body");
-
-  body.addEventListener("mousemove", (e) => {
-    gsap.to(".cursor", {
-      x: e.clientX,
-      y: e.clientY,
-    });
-  });
-
-  useEffect(() => {
-    customCursor();
-  }, [data]);
-
-  const customCursor = () => {
-    const weather = data?.weather[0]?.main;
-    const cursorElement = document.querySelector(".cursor");
-
-    if (!cursorElement) return;
-    if (window.innerWidth < 1020) {
-      cursorElement.style.backgroundImage = "none";
-      return;
-    }
-    if (weather && cursors[weather]) {
-      cursorElement.style.backgroundImage = `url(${cursors[weather]})`;
-    } else {
-      cursorElement.style.backgroundImage = "none";
-      cursorElement.style.cursor = "auto";
-    }
-  };
-
   return (
     <>
       <div className="container h-screen bg-[#E8E8E8] flex items-center justify-center max-sm:px-5">
-        <div
-          className="cursor fixed top-0 left-0 h-10 w-10 rounded-[50%] z-50"
-          style={{
-            backgroundImage: `url(${cloudcur})`,
-            backgroundSize: "cover",
-          }}
-        ></div>
         <div
           className="theme absolute xl:right-10 xl:top-5 
         max-sm:top-2 max-sm:right-3

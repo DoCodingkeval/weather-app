@@ -153,7 +153,7 @@ function Weatherapp() {
   return (
     // main container
     <div
-      className="main-container relative w-[93vw] m-auto h-[80vh] mt-10 rounded-[25px]"
+      className="main-container relative w-[93vw] m-auto h-[83vh] mt-10 rounded-[25px]"
       ref={mainRef}
       style={{
         backgroundImage: `url(${backgroundImage})`,
@@ -203,7 +203,7 @@ function Weatherapp() {
                 {dayName} <br /> {date}
               </span>
             </div>
-            <div className="absolute bottom-36 left-7 w-fit grid grid-cols-2 gap-3 font-medium">
+            <div className="ml-7 w-fit grid grid-cols-2 gap-3 font-medium">
               <div className="flex flex-col items-center gap-1.5 px-4 text-center bg-[#ffffff4f] p-3 rounded-lg">
                 <RiContrastDropLine className="mb-1" />
                 <p className="font-semibold">{weatherNames.humidityPercent}%</p>

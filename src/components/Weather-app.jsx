@@ -203,7 +203,7 @@ function Weatherapp() {
                 {dayName} <br /> {date}
               </span>
             </div>
-            <div className="ml-7 mt-7 w-fit grid grid-cols-2 gap-3 font-medium">
+            {/* <div className="ml-7 mt-7 w-fit grid grid-cols-2 gap-3 font-medium">
               <div className="flex flex-col items-center gap-1.5 px-4 text-center bg-[#ffffff4f] p-3 rounded-lg">
                 <RiContrastDropLine className="mb-1" />
                 <p className="font-semibold">{weatherNames.humidityPercent}%</p>
@@ -215,7 +215,7 @@ function Weatherapp() {
                 <p className="font-semibold">{weatherNames.windSpeed}</p>
                 <h1 className="text-[13px] font-bold">Wind</h1>
               </div>
-            </div>
+            </div> */}
             <div
               className="w-full px-7 absolute bottom-5 flex items-center text-center overflow-x-auto no-scrollbar"
               ref={forecastRef}

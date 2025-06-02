@@ -152,10 +152,9 @@ function Weatherapp() {
 
   return (
     <>
-      <div className="container max-w-100 h-[100vh] m-auto p-5">
+      <div className="h-screen px-2 py-5">
         <div
-          className="main relative rounded-[35px] w-[100%] h-[85vh]
-          flex flex-col items-center justify-center"
+          className="main relative rounded-[35px] w-full h-full"
           ref={mainRef}
           style={{
             backgroundImage: `url(${backgroundImage})`,
@@ -189,8 +188,8 @@ function Weatherapp() {
             <Noresult />
           ) : (
             <>
-              <div className="absolute left-7 top-30 w-[50vw] flex flex-col rounded-xl text-[#333] bg-[#ffffff4f] text-center py-2">
-                <div className="w-35 h-35 m-auto">
+              <div className="absolute left-7 top-30 flex flex-col rounded-xl text-[#333] bg-[#ffffff4f] text-center px-5">
+                <div className="w-30 h-30 m-auto">
                   <img
                     className="object-cover"
                     src={WeatherIcons[imgKey]}
@@ -198,18 +197,16 @@ function Weatherapp() {
                   />
                 </div>
                 <span
-                  className=" font-semibold
-                  max-sm:text-7xl
-                  max-md:text-8xl"
+                  className="font-semibold -mt-2"
                 >
                   <h1 className="text-[18px]">{weatherNames.locationName}</h1>
-                  <h1 className="text-5xl">{weatherNames.temperature}°C</h1>
+                  <h1 className="text-4xl">{weatherNames.temperature}°C</h1>
                 </span>
-                <span className="font-semibold mt-1 max-sm:text-[18px]">
+                <span className="font-semibold mt-1 text-[16px]">
                   {dayName} <br /> {date}
                 </span>
               </div>
-              <div className="absolute bottom-48 left-7 w-fit grid grid-cols-2 gap-4.5 font-medium">
+              <div className="absolute bottom-36 left-7 w-fit grid grid-cols-2 gap-3 font-medium">
                 <div className="flex flex-col items-center gap-1.5 px-4 text-center bg-[#ffffff4f] p-3 rounded-lg">
                   <RiContrastDropLine className="mb-1" />
                   <p className="font-semibold">
@@ -225,7 +222,7 @@ function Weatherapp() {
                 </div>
               </div>
               <div
-                className="w-full px-7 absolute bottom-5 flex items-center text-center transition"
+                className="w-full px-7 absolute bottom-5 flex items-center text-center overflow-x-auto no-scrollbar"
                 ref={forecastRef}
               >
                 {forecast.map((item, index) => {
@@ -233,14 +230,14 @@ function Weatherapp() {
                     <>
                       <div
                         key={index}
-                        className="relative w-full h-30 py-2 rounded-lg not-last:mr-4 bg-[#ffffff94]"
+                        className="relative w-20 h-30 rounded-lg not-last:mr-4 bg-[#ffffff94] flex-none py-2"
                       >
-                        <h1 className="absolute -top-7 left-7 font-bold text-white">
+                        <h1 className="font-bold">
                           {item.dayName}
                         </h1>
                         {item?.weather[0]?.main && (
                           <img
-                            className="h-auto w-20 m-auto"
+                            className="h-auto w-15 m-auto"
                             src={ForecastIcons[item.weather[0].main]}
                           />
                         )}

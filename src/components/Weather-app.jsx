@@ -180,7 +180,7 @@ function Weatherapp() {
           </button>
         </div>
         {loading ? (
-          <span className="absolute left-33 top-55 h-20">
+          <span className="absolute left-37 top-55 h-20">
             <MoonLoader />
           </span>
         ) : hasnoresults ? (

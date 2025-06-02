@@ -151,109 +151,98 @@ function Weatherapp() {
     : bgImages["Clouds"];
 
   return (
-    <>
-      <div className="h-screen px-2 py-5">
-        <div
-          className="main relative rounded-[35px] w-full h-full"
-          ref={mainRef}
-          style={{
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-          }}
-        >
-          <div className="w-full absolute top-2 p-7 flex items-center flex-col gap-2.5 z-10">
-            <input
-              className="w-full text-[14px] outline-none px-7 py-4 font-bold capitalize rounded-[15px] bg-[#ffffff4f] placeholder:text-[#333]"
-              type="text"
-              ref={inputRef}
-              placeholder="Enter city name"
-            />
+    // main container
+    <div
+      className="main-container relative w-[93vw] m-auto h-[80vh] mt-10 rounded-[25px]"
+      ref={mainRef}
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
+    >
+        <div className="w-full p-7 flex items-center flex-col gap-2.5 z-10">
+          <input
+            className="w-full relative text-[14px] outline-none px-7 py-4 font-bold capitalize rounded-[15px] bg-[#ffffff4f] placeholder:text-[#333]"
+            type="text"
+            ref={inputRef}
+            placeholder="Enter city name"
+          />
 
-            <button
-              onClick={() => {
-                setCity(inputRef.current.value.trim());
-                inputRef.current.value = "";
-              }}
-              className="btn absolute right-9 p-3 z-10 cursor-pointer"
-            >
-              <RiSearch2Line />
-            </button>
-          </div>
-          {loading ? (
-            <span className="absolute h-20">
-              <MoonLoader />
-            </span>
-          ) : hasnoresults ? (
-            <Noresult />
-          ) : (
-            <>
-              <div className="absolute left-7 top-30 flex flex-col rounded-xl text-[#333] bg-[#ffffff4f] text-center px-5">
-                <div className="w-30 h-30 m-auto">
-                  <img
-                    className="object-cover"
-                    src={WeatherIcons[imgKey]}
-                    alt="weather-icon"
-                  />
-                </div>
-                <span
-                  className="font-semibold -mt-2"
-                >
-                  <h1 className="text-[18px]">{weatherNames.locationName}</h1>
-                  <h1 className="text-4xl">{weatherNames.temperature}°C</h1>
-                </span>
-                <span className="font-semibold mt-1 text-[16px]">
-                  {dayName} <br /> {date}
-                </span>
-              </div>
-              <div className="absolute bottom-36 left-7 w-fit grid grid-cols-2 gap-3 font-medium">
-                <div className="flex flex-col items-center gap-1.5 px-4 text-center bg-[#ffffff4f] p-3 rounded-lg">
-                  <RiContrastDropLine className="mb-1" />
-                  <p className="font-semibold">
-                    {weatherNames.humidityPercent}%
-                  </p>
-                  <h1 className="text-[13px] font-bold">Humidity</h1>
-                </div>
-
-                <div className="flex flex-col items-center gap-1.5 text-center bg-[#ffffff4f] p-3 rounded-lg">
-                  <RiWindyFill className="mb-1" />
-                  <p className="font-semibold">{weatherNames.windSpeed}</p>
-                  <h1 className="text-[13px] font-bold">Wind</h1>
-                </div>
-              </div>
-              <div
-                className="w-full px-7 absolute bottom-5 flex items-center text-center overflow-x-auto no-scrollbar"
-                ref={forecastRef}
-              >
-                {forecast.map((item, index) => {
-                  return (
-                    <>
-                      <div
-                        key={index}
-                        className="relative w-20 h-30 rounded-lg not-last:mr-4 bg-[#ffffff94] flex-none py-2"
-                      >
-                        <h1 className="font-bold">
-                          {item.dayName}
-                        </h1>
-                        {item?.weather[0]?.main && (
-                          <img
-                            className="h-auto w-15 m-auto"
-                            src={ForecastIcons[item.weather[0].main]}
-                          />
-                        )}
-                        <span className="font-semibold">
-                          {item.weather[0].main}
-                        </span>
-                      </div>
-                    </>
-                  );
-                })}
-              </div>
-            </>
-          )}
+          <button
+            onClick={() => {
+              setCity(inputRef.current.value.trim());
+              inputRef.current.value = "";
+            }}
+            className="btn absolute right-9 p-3 z-10 cursor-pointer"
+          >
+            <RiSearch2Line />
+          </button>
         </div>
-      </div>
-    </>
+        {loading ? (
+          <span className="absolute left-33 top-55 h-20">
+            <MoonLoader />
+          </span>
+        ) : hasnoresults ? (
+          <Noresult />
+        ) : (
+          <>
+            <div className="w-fit flex flex-col rounded-xl text-[#333] bg-[#ffffff4f] text-center px-5 ml-7">
+              <div className="w-30 h-30 m-auto">
+                <img
+                  className="object-cover"
+                  src={WeatherIcons[imgKey]}
+                  alt="weather-icon"
+                />
+              </div>
+              <span className="font-semibold -mt-2">
+                <h1 className="text-[18px]">{weatherNames.locationName}</h1>
+                <h1 className="text-4xl">{weatherNames.temperature}°C</h1>
+              </span>
+              <span className="font-semibold mt-1 text-[16px]">
+                {dayName} <br /> {date}
+              </span>
+            </div>
+            <div className="absolute bottom-36 left-7 w-fit grid grid-cols-2 gap-3 font-medium">
+              <div className="flex flex-col items-center gap-1.5 px-4 text-center bg-[#ffffff4f] p-3 rounded-lg">
+                <RiContrastDropLine className="mb-1" />
+                <p className="font-semibold">{weatherNames.humidityPercent}%</p>
+                <h1 className="text-[13px] font-bold">Humidity</h1>
+              </div>
+
+              <div className="flex flex-col items-center gap-1.5 text-center bg-[#ffffff4f] p-3 rounded-lg">
+                <RiWindyFill className="mb-1" />
+                <p className="font-semibold">{weatherNames.windSpeed}</p>
+                <h1 className="text-[13px] font-bold">Wind</h1>
+              </div>
+            </div>
+            <div
+              className="w-full px-7 absolute bottom-5 flex items-center text-center overflow-x-auto no-scrollbar"
+              ref={forecastRef}
+            >
+              {forecast.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="relative w-20 h-30 rounded-lg not-last:mr-4 bg-[#ffffff94] flex-none py-2"
+                  >
+                    <h1 className="font-bold">{item.dayName}</h1>
+                    {item?.weather[0]?.main && (
+                      <img
+                        className="h-auto w-15 m-auto"
+                        src={ForecastIcons[item.weather[0].main]}
+                      />
+                    )}
+                    <span className="font-semibold">
+                      {item.weather[0].main}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </>
+        )}
+    </div>
   );
 }
 

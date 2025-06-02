@@ -152,11 +152,10 @@ function Weatherapp() {
 
   return (
     <>
-      <div className="container flex items-center justify-center
-      max-sm:h-screen p-5">
+      <div className="container max-w-100 h-[100vh] m-auto p-5">
         <div
-          className="main relative rounded-[35px] w-[100vw] h-[85vh]
-          flex flex-col items-center justify-center duration-700"
+          className="main relative rounded-[35px] w-[100%] h-[85vh]
+          flex flex-col items-center justify-center"
           ref={mainRef}
           style={{
             backgroundImage: `url(${backgroundImage})`,

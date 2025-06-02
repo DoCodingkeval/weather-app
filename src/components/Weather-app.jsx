@@ -155,7 +155,7 @@ function Weatherapp() {
       <div className="container h-screen flex items-center justify-center max-sm:px-5">
         <div
           className="main relative rounded-[35px]
-          w-140  h-screen max-sm:max-w-screen max-sm:h-screen
+          w-140  h-full max-sm:max-w-full max-sm:h-full
           max-md:max-w-full max-md:h-[510px]
           max-lg:max-w-[560px] max-lg:h-[550px]
           flex flex-col items-center justify-center duration-700"

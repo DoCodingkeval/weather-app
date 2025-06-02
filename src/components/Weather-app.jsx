@@ -155,7 +155,7 @@ function Weatherapp() {
       <div className="container flex items-center justify-center
       max-sm:h-screen p-5">
         <div
-          className="main relative rounded-[35px] w-full h-full
+          className="main relative rounded-[35px] w-[100vw] h-[85vh]
           flex flex-col items-center justify-center duration-700"
           ref={mainRef}
           style={{
@@ -190,7 +190,7 @@ function Weatherapp() {
             <Noresult />
           ) : (
             <>
-              <div className="absolute left-7 top-30 w-52 flex flex-col rounded-xl text-[#333] bg-[#ffffff4f] text-center py-2">
+              <div className="absolute left-7 top-30 w-[50vw] flex flex-col rounded-xl text-[#333] bg-[#ffffff4f] text-center py-2">
                 <div className="w-35 h-35 m-auto">
                   <img
                     className="object-cover"

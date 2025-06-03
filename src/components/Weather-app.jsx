@@ -153,7 +153,7 @@ function Weatherapp() {
   return (
     // main container
     <div
-      className="main-container relative w-[93vw] m-auto h-[83vh] mt-10 rounded-[25px]"
+      className="main-container relative w-[93vw] m-auto h-[85vh] max-h-screen overflow-y-auto mt-10 rounded-[25px]"
       ref={mainRef}
       style={{
         backgroundImage: `url(${backgroundImage})`,
@@ -174,7 +174,7 @@ function Weatherapp() {
               setCity(inputRef.current.value.trim());
               inputRef.current.value = "";
             }}
-            className="btn absolute right-9 p-3 z-10 cursor-pointer"
+            className="btn fixed translate-x-[30vw] p-3 z-10 cursor-pointer"
           >
             <RiSearch2Line />
           </button>
@@ -187,21 +187,17 @@ function Weatherapp() {
           <Noresult />
         ) : (
           <>
-            <div className="w-fit flex flex-col rounded-xl text-[#333] bg-[#ffffff4f] text-center px-5 ml-7">
-              <div className="w-30 h-30 m-auto">
+            <div className="w-[45vw] max-w-xs mx-auto flex flex-col items-center justify-center rounded-xl text-[#333] bg-[#ffffff4f] py-2 text-center ml-7">
                 <img
-                  className="object-cover"
+                  className="w-24 h-auto m-auto"
                   src={WeatherIcons[imgKey]}
                   alt="weather-icon"
                 />
+              <div className="font-semibold flex flex-col items-center justify-center leading-none mb-2">
+                <h2 className="text-lg">{weatherNames.locationName}</h2>
+                <p className="text-4xl font-bold mt-1">{weatherNames.temperature}°C</p>
+                <p className="mt-2 text-md">{dayName} <br /> {date}</p>
               </div>
-              <span className="font-semibold -mt-2">
-                <h1 className="text-[18px]">{weatherNames.locationName}</h1>
-                <h1 className="text-4xl">{weatherNames.temperature}°C</h1>
-              </span>
-              <span className="font-semibold mt-1 text-[16px]">
-                {dayName} <br /> {date}
-              </span>
             </div>
             {/* <div className="ml-7 mt-7 w-fit grid grid-cols-2 gap-3 font-medium">
               <div className="flex flex-col items-center gap-1.5 px-4 text-center bg-[#ffffff4f] p-3 rounded-lg">
@@ -216,6 +212,7 @@ function Weatherapp() {
                 <h1 className="text-[13px] font-bold">Wind</h1>
               </div>
             </div> */}
+            {/* forecast container */}
             <div
               className="w-full px-7 absolute bottom-5 flex items-center text-center overflow-x-auto no-scrollbar"
               ref={forecastRef}
@@ -224,7 +221,7 @@ function Weatherapp() {
                 return (
                   <div
                     key={index}
-                    className="relative w-20 h-30 rounded-lg not-last:mr-4 bg-[#ffffff94] flex-none py-2"
+                    className="relative w-[35vw] sm:w-[30vw] md:w-[20vw] h-[20vh] rounded-lg not-last:mr-4 bg-[#ffffff94] flex-none py-2"
                   >
                     <h1 className="font-bold">{item.dayName}</h1>
                     {item?.weather[0]?.main && (

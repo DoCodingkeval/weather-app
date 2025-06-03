@@ -187,9 +187,9 @@ function Weatherapp() {
           <Noresult />
         ) : (
           <>
-            <div className="w-[45vw] max-w-xs mx-auto flex flex-col items-center justify-center rounded-xl text-[#333] bg-[#ffffff4f] py-2 text-center ml-7">
+            <div className="w-[45vw] max-w-xs translate-x-7 flex flex-col items-center justify-center rounded-xl text-[#333] bg-[#ffffff4f] py-2 text-center">
                 <img
-                  className="w-32 h-auto m-auto"
+                  className="w-full h-auto m-auto"
                   src={WeatherIcons[imgKey]}
                   alt="weather-icon"
                 />
@@ -214,7 +214,7 @@ function Weatherapp() {
             </div> */}
             {/* forecast container */}
             <div
-              className="w-full px-7 absolute bottom-5 flex items-center text-center overflow-x-auto no-scrollbar"
+              className="w-full px-7 absolute bottom-5 grid grid-cols-5 gap-30 text-center overflow-x-auto no-scrollbar"
               ref={forecastRef}
             >
               {forecast.map((item, index) => {
@@ -226,7 +226,7 @@ function Weatherapp() {
                     <h1 className="font-bold">{item.dayName}</h1>
                     {item?.weather[0]?.main && (
                       <img
-                        className="h-auto w-20 m-auto"
+                        className="h-auto w-full m-auto"
                         src={ForecastIcons[item.weather[0].main]}
                       />
                     )}

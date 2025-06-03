@@ -214,7 +214,7 @@ function Weatherapp() {
             </div> */}
             {/* forecast container */}
             <div
-              className="w-full px-7 absolute bottom-5 grid grid-cols-5 gap-40 text-center overflow-x-auto no-scrollbar"
+              className="w-full px-7 absolute bottom-5 grid grid-cols-5 gap-35 text-center overflow-x-auto no-scrollbar"
               ref={forecastRef}
             >
               {forecast.map((item, index) => {

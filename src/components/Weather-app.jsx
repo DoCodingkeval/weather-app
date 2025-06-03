@@ -189,7 +189,7 @@ function Weatherapp() {
           <>
             <div className="w-[45vw] max-w-xs mx-auto flex flex-col items-center justify-center rounded-xl text-[#333] bg-[#ffffff4f] py-2 text-center ml-7">
                 <img
-                  className="w-24 h-auto m-auto"
+                  className="w-32 h-auto m-auto"
                   src={WeatherIcons[imgKey]}
                   alt="weather-icon"
                 />
@@ -221,12 +221,12 @@ function Weatherapp() {
                 return (
                   <div
                     key={index}
-                    className="relative w-[35vw] sm:w-[30vw] md:w-[20vw] h-[20vh] rounded-lg not-last:mr-4 bg-[#ffffff94] flex-none py-2"
+                    className="relative w-[35vw] sm:w-[30vw] md:w-[20vw] h-[18vh] rounded-lg not-last:mr-4 bg-[#ffffff94] flex-none py-2"
                   >
                     <h1 className="font-bold">{item.dayName}</h1>
                     {item?.weather[0]?.main && (
                       <img
-                        className="h-auto w-15 m-auto"
+                        className="h-auto w-17 m-auto"
                         src={ForecastIcons[item.weather[0].main]}
                       />
                     )}

@@ -25,6 +25,7 @@ import {
   RiContrastDropLine,
   RiSearch2Line,
   RiWindyFill,
+  RiWindyLine,
 } from "@remixicon/react";
 import "./style.css";
 import Noresult from "./Noresult.jsx";
@@ -187,52 +188,43 @@ function Weatherapp() {
           <Noresult />
         ) : (
           <>
-            <div className="w-[45vw] max-w-xs translate-x-7 flex flex-col items-center justify-center rounded-xl text-[#333] bg-[#ffffff4f] py-2 text-center">
+            <div className="w-[50vw] max-w-xs translate-x-7 flex flex-col items-center justify-center rounded-xl text-[#333] bg-[#ffffff4f] py-2 text-center">
                 <img
-                  className="w-full h-auto m-auto"
+                  className="w-full h-35 m-auto"
                   src={WeatherIcons[imgKey]}
                   alt="weather-icon"
                 />
               <div className="font-semibold flex flex-col items-center justify-center leading-none mb-2">
                 <h2 className="text-lg">{weatherNames.locationName}</h2>
-                <p className="text-4xl font-bold mt-1">{weatherNames.temperature}°C</p>
-                <p className="mt-2 text-md">{dayName} <br /> {date}</p>
+                <p className="text-4xl font-bold">{weatherNames.temperature}°C</p>
+                <div className="h-fit w-fit p-2 flex gap-5 items-center">
+                <p className="text-sm font-bold flex gap-1"><RiContrastDropLine /> {weatherNames.humidityPercent}% </p>
+                <p className="text-sm font-bold flex gap-1"><RiWindyLine /> {weatherNames.windSpeed} </p>
+                </div>
+                <p className="text-sm font-bold">{dayName} <br /> {date}</p>
               </div>
             </div>
-            {/* <div className="ml-7 mt-7 w-fit grid grid-cols-2 gap-3 font-medium">
-              <div className="flex flex-col items-center gap-1.5 px-4 text-center bg-[#ffffff4f] p-3 rounded-lg">
-                <RiContrastDropLine className="mb-1" />
-                <p className="font-semibold">{weatherNames.humidityPercent}%</p>
-                <h1 className="text-[13px] font-bold">Humidity</h1>
-              </div>
-
-              <div className="flex flex-col items-center gap-1.5 text-center bg-[#ffffff4f] p-3 rounded-lg">
-                <RiWindyFill className="mb-1" />
-                <p className="font-semibold">{weatherNames.windSpeed}</p>
-                <h1 className="text-[13px] font-bold">Wind</h1>
-              </div>
-            </div> */}
             {/* forecast container */}
             <div
-              className="w-full px-7 absolute bottom-5 grid grid-cols-5 gap-35 text-center overflow-x-auto no-scrollbar"
+              className="w-full px-7 absolute bottom-5 flex items-center text-center overflow-x-auto no-scrollbar"
               ref={forecastRef}
             >
               {forecast.map((item, index) => {
                 return (
                   <div
                     key={index}
-                    className="relative w-[30vw] sm:w-[30vw] md:w-[20vw] h-[18vh] rounded-lg not-last:mr-4 bg-[#ffffff94] flex-none py-2"
+                    className="relative w-[30vw] sm:w-[30vw] md:w-[20vw] rounded-lg not-last:mr-4 bg-[#ffffff94] flex-none"
                   >
-                    <h1 className="font-bold">{item.dayName}</h1>
+                    <h1 className="font-bold text-[13px] mt-2">{item.dayName}</h1>
                     {item?.weather[0]?.main && (
                       <img
                         className="h-20 w-full m-auto"
                         src={ForecastIcons[item.weather[0].main]}
                       />
                     )}
-                    <span className="font-semibold">
+                    <p className="font-semibold mb-2 text-sm">
                       {item.weather[0].main}
-                    </span>
+                    </p>
                   </div>
                 );
               })}

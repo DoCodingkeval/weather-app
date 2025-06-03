@@ -180,7 +180,7 @@ function Weatherapp() {
           </button>
         </div>
         {loading ? (
-          <span className="absolute left-37 top-55 h-20">
+          <span className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] h-20">
             <MoonLoader />
           </span>
         ) : hasnoresults ? (
@@ -221,12 +221,12 @@ function Weatherapp() {
                 return (
                   <div
                     key={index}
-                    className="relative w-[35vw] sm:w-[30vw] md:w-[20vw] h-[18vh] rounded-lg not-last:mr-4 bg-[#ffffff94] flex-none py-2"
+                    className="relative w-[30vw] sm:w-[30vw] md:w-[20vw] h-[18vh] rounded-lg not-last:mr-4 bg-[#ffffff94] flex-none py-2"
                   >
                     <h1 className="font-bold">{item.dayName}</h1>
                     {item?.weather[0]?.main && (
                       <img
-                        className="h-auto w-17 m-auto"
+                        className="h-auto w-20 m-auto"
                         src={ForecastIcons[item.weather[0].main]}
                       />
                     )}

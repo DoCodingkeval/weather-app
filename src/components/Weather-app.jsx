@@ -226,7 +226,7 @@ function Weatherapp() {
                     <h1 className="font-bold">{item.dayName}</h1>
                     {item?.weather[0]?.main && (
                       <img
-                        className="h-15 w-full m-auto"
+                        className="h-20 w-full m-auto"
                         src={ForecastIcons[item.weather[0].main]}
                       />
                     )}

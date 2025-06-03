@@ -164,7 +164,7 @@ function Weatherapp() {
     >
         <div className="w-full p-7 flex items-center flex-col gap-2.5 z-10">
           <input
-            className="w-full relative text-[14px] outline-none px-7 py-4 font-bold capitalize rounded-[15px] bg-[#ffffff4f] placeholder:text-[#333]"
+            className="w-full relative text-[14px] outline-none px-7 py-4 font-bold rounded-[15px] bg-[#ffffff4f] placeholder:text-[#333]"
             type="text"
             ref={inputRef}
             placeholder="Enter city name"
